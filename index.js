@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
 const express = require('express');
+const { MONGO_CONN_STRING, SERVER_PORT } = require('./settings')
 var cors = require('cors')
 
 const app = express();
 app.use(cors())
+console.log(MONGO_CONN_STRING)
 
-
-mongoose.connect('mongodb://127.0.0.1:27017/nutrition')
+mongoose.connect(uri=MONGO_CONN_STRING)
 
 app.get('/search/food', async (req, res) => {
     try {
@@ -103,6 +104,6 @@ app.get('/food/categories', async (req, res) => {
     }
 });
 
-app.listen(13004, () => {
+app.listen(SERVER_PORT, () => {
     console.log('Server listening on port 13004 !');
 });
